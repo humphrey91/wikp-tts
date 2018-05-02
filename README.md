@@ -1,4 +1,4 @@
-# Wikipedia paragraph parser with google text to speeche api.
+# Wikipedia paragraph parser with google text to speech api.
 
 This is a sample NPM module inspired by [*Learn Enough JavaScript to Be Dangerous*](https://www.learnenough.com/javascript-tutorial) by Michael Hartl.
 
