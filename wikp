@@ -1,0 +1,6 @@
+#!/bin/bash
+
+args=("$@")
+SCRIPTPATH=`npm config get prefix`/lib/node_modules/wikp-tts/
+source $SCRIPTPATH/wikp-tts/bin/activate
+node $SCRIPTPATH/wikp.js ${args[0]}
