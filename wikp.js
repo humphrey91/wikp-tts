@@ -8,7 +8,7 @@ let stream = fs.createWriteStream('data.txt');
 let exec = require('child_process').exec;
 
 let request = require("request");
-let argument = process.argv[2].split(" ").join("\_")
+let argument = processArg(process.argv[2])
 
 let url = `https://en.wikipedia.org/wiki/${argument}`;
 
@@ -25,6 +25,10 @@ const client = new textToSpeech.TextToSpeechClient();
 
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
+
+function processArg(arg) {
+  return arg.split(" ").join("_");
+};
 
 function getRequest(url, callback) {
   request(url, (error, response, body) => {
