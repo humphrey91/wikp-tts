@@ -1,20 +1,20 @@
 {
   "name": "wikp-tts",
-  "version": "1.1.3",
+  "version": "1.2.3",
   "description": "Grab Wiki paragraphs and convert to speech with google tts.",
   "main": "index.js",
   "bin": {
-    "wikp-install": "install",
     "wikp": "wikp"
   },
   "author": "Josh Humphrey",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/text-to-speech": "^0.1.0",
     "fs": "0.0.1-security",
     "jsdom": "^11.10.0",
     "mpg123": "^0.2.3",
-    "python-shell": "^0.5.0",
     "request": "^2.85.0",
-    "util": "^0.10.3"
+    "util": "^0.10.3",
+    "yesno": "0.0.1"
   }
 }

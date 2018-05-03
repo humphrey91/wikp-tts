@@ -8,9 +8,6 @@ The module can be used as follows:
 
 ## Installation
 
-```sh
-$ npm install --global wikp-tts
-```
 To run the client library, you must first set up authentication by creating a service account and setting an environment variable.
 https://cloud.google.com/text-to-speech/docs/reference/libraries
 Follow directions under *Setting up authentication*.
@@ -27,15 +24,11 @@ $ export GOOGLE_APPLICATION_CREDENTIALS="/home/user/Downloads/service-account-fi
 ## Usage
 
 ```sh
-$ wikp-install
 $ wikp <URL-ARGUMENT> 
 ```
 For example:
 
 ```sh
-$ wikp https://en.wikipedia.org/wiki/Naruto_Uzumaki
+$ wikp Naruto_Uzumaki
+$ wikp "Naruto Uzumaki"
 ```
-
-## Considerations
-
-Curently it only sends the first 4000 characters to Google's Text-To-Speech Api. If you wish to change this you can edit *text-to-speech.py* in the project directory. It chops the wiki output into an array, and only sends the first block. 

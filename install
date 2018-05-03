@@ -1,7 +1,0 @@
-#!/bin/bash
-
-pip install virtualenv
-SCRIPTPATH=`npm config get prefix`/lib/node_modules/wikp-tts/requirements.txt
-source $SCRIPTPATH/wikp-tts/bin/activate
-pip install -r $SCRIPTPATH
-
