@@ -37,3 +37,26 @@ For example:
 $ wikp Naruto_Uzumaki
 $ wikp "Naruto Uzumaki"
 ```
+
+For use in project:
+
+First:
+```sh
+$ npm install wikp-tts --save
+```
+
+```javascript
+let WikpTts = require('WikpTts');
+
+let wikp = new WikpTts();
+
+// processes the command line argument *the search term to wiki
+wikp.processArg(process.argv[2], (result) => {
+  // sets the full wiki lookup path
+  const url = `https://en.wikipedia.org/wiki/${result}`;
+  // Main call
+  wikp.getRequest(url, () => {
+    wikp.readResponse(increment);
+  });
+});
+```

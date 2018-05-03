@@ -1,10 +1,13 @@
 {
   "name": "wikp-tts",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "Grab Wiki paragraphs and convert to speech with google tts.",
   "main": "index.js",
   "bin": {
     "wikp": "wikp"
+  },
+  "scripts": {
+    "test": "mocha"
   },
   "author": "Josh Humphrey",
   "license": "ISC",
@@ -16,5 +19,8 @@
     "request": "^2.85.0",
     "util": "^0.10.3",
     "yesno": "0.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^5.1.1"
   }
 }
