@@ -8,7 +8,7 @@ let stream = fs.createWriteStream('data.txt');
 let exec = require('child_process').exec;
 
 let request = require("request");
-let argument = process.argv[2].split(" ").join("_")
+let argument = process.argv[2].split(" ").join("\_")
 
 let url = `https://en.wikipedia.org/wiki/${argument}`;
 
