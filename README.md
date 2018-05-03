@@ -8,6 +8,11 @@ The module can be used as follows:
 
 ## Installation
 
+First:
+```sh
+$ npm install --global wikp-tts
+```
+
 To run the client library, you must first set up authentication by creating a service account and setting an environment variable.
 https://cloud.google.com/text-to-speech/docs/reference/libraries
 Follow directions under *Setting up authentication*.
