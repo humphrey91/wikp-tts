@@ -2,4 +2,4 @@
 
 args=("$@")
 SCRIPTPATH=`npm config get prefix`/lib/node_modules/wikp-tts/
-node $SCRIPTPATH/wikp.js "${args[0]}"
+node $SCRIPTPATH/index.js "${args[0]}"

@@ -46,7 +46,7 @@ $ npm install wikp-tts --save
 ```
 
 ```javascript
-let WikpTts = require('WikpTts');
+let WikpTts = require('wikp');
 
 let wikp = new WikpTts();
 

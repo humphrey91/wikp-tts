@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-module.exports = WikpTts;
+
 /*
 
   This program accepts a search term as a command line argument and makes a request
@@ -23,9 +23,6 @@ module.exports = WikpTts;
   let request = require("request");
   // Tool for querying the user in terminal
   let yesno = require('yesno');
-  // Track where in the wiki the program is
-  let increment = 0;
-  let finalSize;
   // Imports the Google Cloud client library
   const textToSpeech = require('@google-cloud/text-to-speech');
   // creates a virtual document object so we can manipulate the response
@@ -34,7 +31,10 @@ module.exports = WikpTts;
   // for playing audio
   let Sound = require('node-mpg123');
   
-function WikpTts() {
+module.exports = function WikpTts() {
+  // Track where in the wiki the program is
+  this.increment = 0;
+  this.finalSize;
   
   // Process the command argument to match Wiki search style *_* 
   this.processArg = function processArg(arg, callback) {
@@ -118,10 +118,10 @@ function WikpTts() {
       yesno.ask('Would you like to hear more?', true, ok => {
         if(ok) {
             // Increments counter to grab next chunck of text
-            increment = increment + 1;
-            if (increment < finalSize) {
+            this.increment = this.increment + 1;
+            if (this.increment < this.finalSize) {
               // Check if at the end
-              this.readResponse(increment);
+              this.readResponse(this.increment);
             } else {
               // Lets user know the wiki is finished.
               this.playAudioFile("finished.mp3", () => {
@@ -149,7 +149,7 @@ function WikpTts() {
   }
 
   // Read output from data.txt and process it to send to google-api
-  this.readResponse = function readResponse(increment) {
+  this.readResponse = function readResponse() {
     fs.readFile(`${dirString}/data.txt`, "utf-8", (err, data) => {
       if (err) {
         console.error('Error:', err);
@@ -158,11 +158,11 @@ function WikpTts() {
         // process file
         let text = this.splitString(data);
         // set the length of file
-        finalSize = text.length;
+        this.finalSize = text.length;
         // Creates a client
         let client = new textToSpeech.TextToSpeechClient();
         // Performs the Text-to-Speech request
-        client.synthesizeSpeech(this.setRequest(text[increment]), (err, response) => {
+        client.synthesizeSpeech(this.setRequest(text[this.increment]), (err, response) => {
           if (err) {
             console.error('ERROR:', err);
             return;
@@ -181,15 +181,3 @@ function WikpTts() {
     });
   }
 }
-
-let wikp = new WikpTts();
-
-// processes the command line argument *the search term to wiki
-wikp.processArg(process.argv[2], (result) => {
-  // sets the full wiki lookup path
-  const url = `https://en.wikipedia.org/wiki/${result}`;
-  // Main call
-  wikp.getRequest(url, () => {
-    wikp.readResponse(increment);
-  });
-});
