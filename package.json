@@ -1,6 +1,6 @@
 {
   "name": "wikp-tts",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Grab Wiki paragraphs and convert to speech with google tts.",
   "main": "index.js",
   "bin": {
