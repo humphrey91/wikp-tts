@@ -46,8 +46,7 @@ $ npm install wikp-tts --save
 ```
 
 ```javascript
-let WikpTts = require('wikp');
-
+const WikpTts = require("wikp-tts");
 let wikp = new WikpTts();
 
 // processes the command line argument *the search term to wiki
@@ -56,7 +55,7 @@ wikp.processArg(process.argv[2], (result) => {
   const url = `https://en.wikipedia.org/wiki/${result}`;
   // Main call
   wikp.getRequest(url, () => {
-    wikp.readResponse(increment);
+    wikp.readResponse();
   });
 });
 ```

@@ -1,6 +1,4 @@
-
 const WikpTts = require("./wikp.js");
-
 let wikp = new WikpTts();
 
 // processes the command line argument *the search term to wiki
