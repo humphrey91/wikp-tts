@@ -12,7 +12,7 @@
     "@google-cloud/text-to-speech": "^0.1.0",
     "fs": "0.0.1-security",
     "jsdom": "^11.10.0",
-    "mpg123": "^0.2.3",
+    "node-mpg123": "^1.0.2-23",
     "request": "^2.85.0",
     "util": "^0.10.3",
     "yesno": "0.0.1"

@@ -1,6 +1,5 @@
 #!/bin/bash
 
-INCREMENT=0
 args=("$@")
 SCRIPTPATH=`npm config get prefix`/lib/node_modules/wikp-tts/
 node $SCRIPTPATH/wikp.js "${args[0]}"
