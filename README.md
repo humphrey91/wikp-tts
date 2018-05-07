@@ -26,6 +26,7 @@ For example:
 ```sh
 $ export GOOGLE_APPLICATION_CREDENTIALS="/home/user/Downloads/service-account-file.json"
 ```
+
 ## Usage
 
 ```sh
@@ -50,12 +51,19 @@ const WikpTts = require("wikp-tts");
 let wikp = new WikpTts();
 
 // processes the command line argument *the search term to wiki
-wikp.processArg(process.argv[2], (result) => {
-  // sets the full wiki lookup path
-  const url = `https://en.wikipedia.org/wiki/${result}`;
-  // Main call
-  wikp.getRequest(url, () => {
-    wikp.readResponse();
-  });
-});
+wikp.perform();
 ```
+
+```sh
+$ node index.js donald_trump
+```
+
+You can also pass a search term directly:
+
+```javascript
+wikp.perform("donald_trump");
+```
+```sh
+$ node index.js
+```
+

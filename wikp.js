@@ -45,8 +45,8 @@ module.exports = function WikpTts() {
       callback(arg.split(/[\s_]+/).map(word => word.replace(word[0], word[0].toUpperCase())).join("_"));
     } else {
       this.playAudioFile('missing_input.mp3', () => {
-        console.log("Missing search term.")
-        process.exit()
+        console.log('Missing search term.')
+        callback("exit")
       })
     }
   };
@@ -79,11 +79,11 @@ module.exports = function WikpTts() {
       // Check to see if there was any text on the page
       if (paragraphs.length === 0) {
         console.error("Error: No data on page.")
-        process.exit()
-      } else {
+        response = "exit"
+      } 
       // callback when finished
-        callback(response);
-      }
+      callback(response);
+
     })
   };
 
@@ -99,7 +99,7 @@ module.exports = function WikpTts() {
     let audio = new Sound(dirString + '/audio/' + fileName);
     audio.play();
     audio.on('complete', () => {
-      callback();
+      callback(fileName);
     });
   }
 
@@ -113,7 +113,6 @@ module.exports = function WikpTts() {
 
   // Play audio asking if user would like to hear more, prompt terminal
   this.checkMore = function checkMore() {
-    // Play hear more *REFACTOR*
     this.playAudioFile("hear_more.mp3", () => {
       yesno.ask('Would you like to hear more?', true, ok => {
         if(ok) {
@@ -125,6 +124,7 @@ module.exports = function WikpTts() {
             } else {
               // Lets user know the wiki is finished.
               this.playAudioFile("finished.mp3", () => {
+                console.log("Finished");
                 process.exit();
               });
             }
@@ -180,4 +180,30 @@ module.exports = function WikpTts() {
       }
     });
   }
-}
+
+  this.mainCall = function mainCall(result) {
+    if (result === "exit") {
+      process.exit();
+    } else {
+      // sets the full wiki lookup path
+      const url = `https://en.wikipedia.org/wiki/${result}`;
+      // Main call
+      this.getRequest(url, (response) => {
+        if (response === 'exit') {
+          process.exit();
+        } else {
+          this.readResponse();
+        }
+      });
+    };
+  };
+
+  this.perform = function perform(term = "") {
+    // processes the command line argument *the search term to wiki
+    if (term.length === 0) {
+      this.processArg(process.argv[2], (result) => this.mainCall(result));
+    } else {
+      this.processArg(term, (result) => this.mainCall(result));
+    };
+  };
+};
